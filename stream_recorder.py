@@ -2,13 +2,16 @@ import requests
 
 
 radios = {
-	'CherieFM': 'http://cdn.nrjaudio.fm/audio1/fr/30201/mp3_128.mp3',
+	'cheriefm': {
+                 'name': 'CherieFM',
+                 'flux': 'http://cdn.nrjaudio.fm/audio1/fr/30201/mp3_128.mp3',
+                }
 }
 
-stream_url = radios['CherieFM']
+stream_url = radios['cheriefm']['flux']
 r = requests.get(stream_url, stream=True)
 
-with open(radios['CherieFM'] + '.mp3', 'wb') as f:
+with open(radios['cheriefm']['name'] + '.mp3', 'wb') as f:
     try:
         for block in r.iter_content(1024):
             f.write(block)
