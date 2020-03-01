@@ -8,10 +8,11 @@ radios = {
                 }
 }
 
-stream_url = radios['cheriefm']['flux']
+stream_url = radios['cheriefm'].get('flux')
 r = requests.get(stream_url, stream=True)
+radiofile = radios['cheriefm'].get('name') + '.mp3'
 
-with open(radios['cheriefm']['name'] + '.mp3', 'wb') as f:
+with open(radiofile, 'wb') as f:
     try:
         for block in r.iter_content(1024):
             f.write(block)
